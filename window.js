@@ -123,6 +123,26 @@ export class WindowManager {
         }
     }
 
+    makeTopLevelOn(windows) {
+        windows.forEach(w => {
+            const window = document.querySelector(w.window)
+            if (window) {
+                w.targets?.forEach(selector => {
+                    const t = document.querySelector(selector)
+                    if (t && selector.includes('ico')) {
+                        t?.addEventListener('dblclick', e => {
+                            window.style.zIndex = WindowManager.zIndex++
+                        })
+                    } else if (t) {
+                        t?.addEventListener('click', e => {
+                            window.style.zIndex = WindowManager.zIndex++
+                        })
+                    }
+                })
+            }
+        })
+    }
+
     cleanOnClose(w) {
         const close = w.querySelector('.ui_window__head__close')
         close?.addEventListener('click', e => {

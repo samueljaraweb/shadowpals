@@ -43,7 +43,8 @@ window.addEventListener('load', e => {
         pencilSize: 1,
         eraserSize: 8,
         font: '14px "Ms sans serif 8pt"',
-        lineHeight: 16
+        lineHeight: 16,
+        eraserUseColor: false
     })
 })
 </script>

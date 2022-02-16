@@ -19,7 +19,8 @@ export class Paint {
             pencilSize: 1,
             eraserSize: 8,
             font: '14px "Ms sans serif 8pt"',
-            lineHeight: 16
+            lineHeight: 16,
+            eraserUseColor: false
         }
 
         Object.assign(this.config, config)
@@ -407,7 +408,7 @@ export class Paint {
                 this.ctx.strokeStyle = this.colorFirst
             }
             if (this.currentTool === 'eraser') {
-                this.ctx.strokeStyle = this.colorSecond
+                this.ctx.strokeStyle = this.config.eraserUseColor === true ? this.colorSecond : '#FFFFFF'
             }
         })
         document.addEventListener('mouseup', e => {

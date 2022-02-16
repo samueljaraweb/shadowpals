@@ -1,6 +1,5 @@
 export class MusicPlayer {
     constructor(selector, playlist) {
-        this.hideOnClose = hideOnClose
         this.container = document.querySelector(selector)
         this.playlist = playlist ? playlist : {artist: '', tracks: []}
         this.currentTrackID = 0

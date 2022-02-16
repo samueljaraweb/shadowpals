@@ -1,7 +1,6 @@
 export class Notepad {
     constructor(selector, hideOnClose) {
         this.container = document.querySelector(selector)
-        this.hideOnClose = hideOnClose
 
         this.createTextarea()
         this.assignMenu()

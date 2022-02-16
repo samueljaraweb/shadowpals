@@ -1,5 +1,6 @@
 export class MusicPlayer {
     constructor(selector, playlist) {
+        this.hideOnClose = hideOnClose
         this.container = document.querySelector(selector)
         this.playlist = playlist ? playlist : {artist: '', tracks: []}
         this.currentTrackID = 0
@@ -217,7 +218,6 @@ export class MusicPlayer {
         this.audio.pause()
         this.paused = true
         this.setTrack(0)
-        this.container.style.display = 'none'
         this.container.classList.remove('maximized')
         const appPanel = document.querySelector('.content-active-apps .active-app-musicplayer')
         if (appPanel) appPanel.style.display = 'none'

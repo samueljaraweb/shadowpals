@@ -446,7 +446,6 @@ export class Paint {
     }
 
     close() {
-        this.container.style.display = 'none'
         this.container.classList.remove('maximized')
         const appPanel = document.querySelector('.content-active-apps .active-app-paint')
         if (appPanel) appPanel.style.display = 'none'

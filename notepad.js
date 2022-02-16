@@ -1,6 +1,7 @@
 export class Notepad {
-    constructor(selector) {
+    constructor(selector, hideOnClose) {
         this.container = document.querySelector(selector)
+        this.hideOnClose = hideOnClose
 
         this.createTextarea()
         this.assignMenu()
@@ -50,7 +51,6 @@ export class Notepad {
 
     close() {
         this.textarea.value = ''
-        this.container.style.display = 'none'
         this.container.classList.remove('maximized')
         const appPanel = document.querySelector('.content-active-apps .active-app-notepad')
         if (appPanel) appPanel.style.display = 'none'

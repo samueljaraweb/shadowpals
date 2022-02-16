@@ -271,10 +271,8 @@ export class Paint {
         while(start-- && length--) {
             if(Math.abs(array_one[start] - array_two[length]) > tolerance) {
                 return false;
-        
             }
         }
-        // console.log('not diff')
         
         return true;
     }
@@ -310,7 +308,6 @@ export class Paint {
                 // Use the same loop for setting RGBA as for checking the neighbouring pixels
                 if(i < 4) {
                     image_data[offset + i] = colour[i];
-                    // console.log( image_data[offset + i], offset, i)
                 }
             
                 // Get the new coordinate by adjusting x and y based on current step
@@ -384,11 +381,8 @@ export class Paint {
         this.canvas.addEventListener('click', e => {
             if (this.currentTool === 'pot') {
                 const bounds = this.canvas.getBoundingClientRect();
-                const cssScale = bounds.width / this.canvas.offsetWidth;
                 const x = Math.floor((e.pageX - bounds.left) * this.scale / cssScale)
                 const y = Math.floor((e.pageY - bounds.top) * this.scale / cssScale)
-
-                console.log(x,y,cssScale)
           
                 let imageData = this.ctx.getImageData(0,0,this.canvas.width, this.canvas.height)
                 let target_offset = this.pointOffset(x, y, this.canvas.width)

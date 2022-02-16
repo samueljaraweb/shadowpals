@@ -381,8 +381,8 @@ export class Paint {
         this.canvas.addEventListener('click', e => {
             if (this.currentTool === 'pot') {
                 const bounds = this.canvas.getBoundingClientRect();
-                const x = Math.floor((e.pageX - bounds.left) * this.scale / cssScale)
-                const y = Math.floor((e.pageY - bounds.top) * this.scale / cssScale)
+                const x = Math.floor((e.pageX - bounds.left) * this.scale )
+                const y = Math.floor((e.pageY - bounds.top) * this.scale )
           
                 let imageData = this.ctx.getImageData(0,0,this.canvas.width, this.canvas.height)
                 let target_offset = this.pointOffset(x, y, this.canvas.width)

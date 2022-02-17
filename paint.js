@@ -447,6 +447,10 @@ export class Paint {
     }
 
     close() {
+        this.resetTool()
+        this.currentTool = 'pencil'
+        this.canvas.classList.add('cursor-pencil')
+
         this.container.classList.remove('maximized')
         const appPanel = document.querySelector('.content-active-apps .active-app-paint')
         if (appPanel) appPanel.style.display = 'none'

@@ -18,7 +18,7 @@ export class Notepad {
     focusOnStart() {
         const ico = document.querySelector('.ui_icon__notepad')
         ico?.addEventListener('dblclick', e => {
-            this.textarea.focus()
+            setTimeout( () => this.textarea.focus(), 100)
         })
     }
 

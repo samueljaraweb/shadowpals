@@ -46,6 +46,10 @@ export class Paint {
         this.buttons.Text = this.container.querySelector('.button-toolbar-text')
         this.buttons.Rotate = this.container.querySelector('.button-toolbar-rotate')
         this.buttons.Spin = this.container.querySelector('.button-toolbar-spin')
+        this.btnClose = this.container?.querySelector('.ui_window__head__close')
+        this.btnClose?.addEventListener('click', e => {
+            this.close()
+        })
 
 
 

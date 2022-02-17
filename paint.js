@@ -26,6 +26,7 @@ export class Paint {
         Object.assign(this.config, config)
 
         this.canvas = document.createElement('canvas')
+        this.canvas.classList.add('cursor-pencil')
         this.ctx = this.canvas.getContext('2d')
         this.ctx.imageSmoothingEnabled = false;
 

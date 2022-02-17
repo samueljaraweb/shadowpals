@@ -4,6 +4,7 @@ export class Notepad {
 
         this.createTextarea()
         this.assignMenu()
+        this.focusOnStart()
     }
 
     createTextarea() {
@@ -12,6 +13,13 @@ export class Notepad {
         this.textarea.classList.add('notepad-textarea')
 
         if (section) section.replaceWith(this.textarea)
+    }
+
+    focusOnStart() {
+        const ico = document.querySelector('.ui_icon__notepad')
+        ico?.addEventListener('dblclick', e => {
+            this.textarea.focus()
+        })
     }
 
     assignMenu() {

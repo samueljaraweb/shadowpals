@@ -1,7 +1,7 @@
 export class Paint {
     constructor(selector, config) {
         this.container = document.querySelector('.ui_window_paint')
-        this.currentTool = undefined
+        this.currentTool = 'pencil'
         this.prev_x = 0
         this.prev_y = 0
         this.cur_x = 0

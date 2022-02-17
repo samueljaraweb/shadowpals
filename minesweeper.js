@@ -872,3 +872,5 @@ var minesweeper = {
 $(document).ready(function() {
 	minesweeper.init('game');
 });
+//-----------------------------------
+

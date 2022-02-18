@@ -11,8 +11,8 @@
     resize: none !important;
 }
 .button-pushed {
-    box-shadow: inset -1px -1px 0px #FFFFFF, inset 1px 1px 0px #808080, inset 2px 2px 0px #000000, inset -2px -2px 0px #808080;
-    outline: dashed;
+    box-shadow: inset -1px -1px 0px #FFFFFF, inset 1px 1px 0px #808080, inset 2px 2px 0px #000000, inset -2px -2px 0px #808080!important;
+    outline: dotted;
 }
 .head-ui-window, .title-window-header  {
     cursor: unset !important;

@@ -50,6 +50,7 @@ export class Paint {
         this.btnClose?.addEventListener('click', e => {
             this.close()
         })
+        this.buttons?.Pencil?.classList.add('active-tool')
 
 
 
@@ -75,6 +76,7 @@ export class Paint {
             this.resetTool()
             this.canvas.classList.add('cursor-pencil')
             this.currentTool = 'pencil'
+            this.buttons?.Pencil?.classList.add('active-tool')
             this.ctx.lineWidth = this.config.pencilSize
         })
 
@@ -82,12 +84,14 @@ export class Paint {
             this.resetTool()
             this.canvas.classList.add('cursor-pot')
             this.currentTool = 'pot'
+            this.buttons?.Pot?.classList.add('active-tool')
         })
 
         this.buttons.Eraser?.addEventListener('click', e => {
             this.resetTool()
             this.canvas.classList.add('cursor-eraser')
             this.currentTool = 'eraser'
+            this.buttons?.Eraser?.classList.add('active-tool')
             this.ctx.lineWidth = this.config.eraserSize
         })
 
@@ -95,6 +99,7 @@ export class Paint {
             this.resetTool()
             this.textOverlay.classList.add('cursor-text')
             this.currentTool = 'text'
+            this.buttons?.Text?.classList.add('active-tool')
             this.textOverlay.style.pointerEvents = 'all'
         })
 
@@ -336,6 +341,10 @@ export class Paint {
 
     resetTool() {
         this.canvas.classList.remove('cursor-pot', 'cursor-pencil', 'cursor-eraser', 'cursor-text')
+        const toolBtns = [this.buttons.Pencil, this.buttons.Pot, this.buttons.Eraser, this.buttons.Text]
+        toolBtns.forEach(b => {
+            b?.classList.remove('active-tool')
+        })
         this.textOverlay.style.pointerEvents = null
     }
 
@@ -453,6 +462,7 @@ export class Paint {
     close() {
         this.resetTool()
         this.currentTool = 'pencil'
+        this.buttons?.Pencil?.classList.add('active-tool')
         this.canvas.classList.add('cursor-pencil')
 
         this.container.classList.remove('maximized')

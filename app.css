@@ -11,7 +11,8 @@
     resize: none !important;
 }
 .button-pushed {
-    transform: translate(1px, 1px);
+    box-shadow: inset -1px -1px 0px #FFFFFF, inset 1px 1px 0px #808080, inset 2px 2px 0px #000000, inset -2px -2px 0px #808080;
+    outline: dashed;
 }
 .head-ui-window, .title-window-header  {
     cursor: unset !important;

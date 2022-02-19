@@ -13,7 +13,7 @@
 .button-pushed {
     box-shadow: inset -1px -1px 0px #FFFFFF, inset 1px 1px 0px #808080, inset 2px 2px 0px #000000, inset -2px -2px 0px #808080!important;
     outline-color: #000;
-  outline-offset: 1px;
+  outline-offset: -4px;
   outline-style: dotted;
   outline-width: 1px;
 }

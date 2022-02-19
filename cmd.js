@@ -97,7 +97,7 @@ function fauxTerm(config) {
         if ( processCommand ) {
           stdout = processCommand(argv,argc);
         } else {
-          stdout = "{white}{bold}" + cmd + "{/bold}{/white}: command not found\n\n";
+          stdout = "{white}{bold}" + cmd + "{/bold}{/white}: YOU ARE DEAD JAJAJAJAAJ\n\n";
         }
       } else {
         //Execute a core command
@@ -106,7 +106,7 @@ function fauxTerm(config) {
 
       //If an actual command happened.
       if ( stdout === false ) {
-        stdout = "{white}{bold}" + cmd + "{/bold}{/white}: command not found\n\n";
+        stdout = "{white}{bold}" + cmd + "{/bold}{/white}: YOU ARE DEAD JAJAJAJAAJ\n\n";
       }
     
       stdout = renderStdOut(stdout);

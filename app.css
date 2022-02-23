@@ -153,3 +153,14 @@
     resize: none;
     background-color: rgba(255, 255, 255, 0);
 }
+
+/* Minimize */
+.minimize-window {
+    position: absolute;
+    background: #444;
+    opacity: 0.8;
+}
+.minimize-window.minimize-animate {
+    transition: all 0.2s ease-in;
+    opacity: 0;
+}

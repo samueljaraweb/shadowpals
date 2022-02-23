@@ -132,7 +132,7 @@ export class WindowManager {
         if (w.appName) w.minimizeApp = document.querySelector(`.active-app[data-app-name="${w.appName}"]`)
 
         if (w.minimizeApp && !img?.classList.contains('button-disabled')) {
-            const duration = 200
+            const duration = 300
 
             w.minimizeWindow = document.createElement('div')
             w.minimizeWindow.classList.add('minimize-window')

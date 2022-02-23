@@ -11,6 +11,7 @@ export class WindowManager {
 
             // Collect all windows from page and add state
             w.state = {}
+            w.appName = w.dataset.appName
             WindowManager.windows.push(w)
 
             // zIndexing
@@ -23,6 +24,8 @@ export class WindowManager {
             this.allowMaximize(w)
             // Close
             this.cleanOnClose(w)
+            // Minimize
+            this.allowMinimize(w)
         })
     }
 
@@ -110,8 +113,8 @@ export class WindowManager {
 
             if (!w.classList.contains('maximized')) {
                 const rect = w.getBoundingClientRect()
-                w.style.width = rect.width+'px'
-                w.style.height = rect.height+'px'
+                w.style.width = rect.width + 'px'
+                w.style.height = rect.height + 'px'
                 setTimeout(() => {
                     w.classList.add('maximized')
                     w.classList.add('no-resize')
@@ -121,6 +124,76 @@ export class WindowManager {
                 w.classList.remove('no-resize')
             }
         }
+    }
+
+    allowMinimize(w) {
+        const btn = w.querySelector('.ui_window__head__minimize')
+        const img = btn?.querySelector('img')
+        if (w.appName) w.minimizeApp = document.querySelector(`.active-app[data-app-name="${w.appName}"]`)
+
+        if (w.minimizeApp && !img?.classList.contains('button-disabled')) {
+            const duration = 200
+
+            w.minimizeWindow = document.createElement('div')
+            w.minimizeWindow.classList.add('minimize-window')
+            w.minimizeWindow.style.display = 'none'
+            document.body.appendChild(w.minimizeWindow)
+
+            btn?.addEventListener('click', e => {
+                this.minimize(w, duration)
+            })
+
+            w.minimizeApp.addEventListener('click', e => {
+                if (w.dataset.minimized === 'true') this.minimizeRevert(w, duration)
+            })
+        }
+    }
+
+    minimizeWindowSetSize(mw, el) {
+        const rect = el.getBoundingClientRect()
+        const zIndex = window.getComputedStyle(el).zIndex
+        mw.style.width = rect.width + 'px'
+        mw.style.height = rect.height + 'px'
+        mw.style.top = rect.top + 'px'
+        mw.style.left = rect.left + 'px'
+        mw.style.display = 'block'
+        mw.style.zIndex = zIndex + 1
+    }
+
+    minimize(w, duration) {
+        this.minimizeWindowSetSize(w.minimizeWindow, w)
+
+        w.style.display = 'none'
+        w.dataset.minimized = 'true'
+
+        setTimeout(() => {
+            this.minimizeWindowSetSize(w.minimizeWindow, w.minimizeApp)
+            w.minimizeWindow.classList.add('minimize-animate')
+            setTimeout(() => {
+                w.minimizeWindow.style.display = 'none'
+                w.minimizeWindow.classList.remove('minimize-animate')
+            }, duration)
+        }, 10)
+
+    }
+
+    minimizeRevert(w, duration) {
+        this.minimizeWindowSetSize(w.minimizeWindow, w.minimizeApp)
+
+        w.dataset.minimized = 'false'
+
+        setTimeout(() => {
+            w.style.display = 'flex'
+            this.minimizeWindowSetSize(w.minimizeWindow, w)
+            w.style.display = 'none'
+            setTimeout(() => w.style.display = 'flex', duration)
+
+            w.minimizeWindow.classList.add('minimize-animate')
+            setTimeout(() => {
+                w.minimizeWindow.style.display = 'none'
+                w.minimizeWindow.classList.remove('minimize-animate')
+            }, duration)
+        }, 10)
     }
 
     makeTopLevelOn(windows) {

@@ -22,6 +22,34 @@ function fauxTerm(config) {
     fauxInput.focus();
   }
 
+  var responses = [
+    "Creep it real",
+    "If you got it, haunt it <3",
+    "Hello, Boo-tyful ;)",
+    "Did you know, hell was so stressful they sent us back?",
+    "I\'m bad and boo-jee :P",
+    "You say ghost like it's a bad thing :(",
+    "Certified creep, seven days a week :D",
+    "Ghosts don't give a sheet, homie.",
+    "Stay spooky, fren.",
+    "We won't ghost you, we promise <3",
+    "We're a haunt-mess... Really though.",
+    "Hey there living, are you a future ghost? Join Shadow Pals for moral support.",
+    "BING BONG!",
+    "I wish I had a friend like me. - Kanye West <3",
+    "Thick thighs and spooky vibes.",
+    "We put the FUN, in funeral :)",
+    "Why do ghosts hate the rain? It dampens their spirits. haaaa ha ha ha...",
+    "What room in a ghost’s house is most unnecessary? The living room, duh.",
+    "Squad-Ghouls <3"];
+  var responseIndex = -1;
+
+  function nextResponse() {
+    if (responseIndex === responses.length - 1) responseIndex = -1;
+    responseIndex++;
+    return responses[responseIndex];
+  }
+
 
   function getLeader() {
     return cwd + "$ ";
@@ -97,7 +125,7 @@ function fauxTerm(config) {
         if ( processCommand ) {
           stdout = processCommand(argv,argc);
         } else {
-          stdout = "{white}{bold}" + cmd + "{/bold}{/white}: YOU ARE DEAD JAJAJAJAAJ\n\n";
+          stdout = `{white}{bold}${cmd}{/bold}{/white}: ${nextResponse()}\n\n`;
         }
       } else {
         //Execute a core command
@@ -106,7 +134,7 @@ function fauxTerm(config) {
 
       //If an actual command happened.
       if ( stdout === false ) {
-        stdout = "{white}{bold}" + cmd + "{/bold}{/white}: YOU ARE DEAD JAJAJAJAAJ\n\n";
+        stdout = `{white}{bold}${cmd}{/bold}{/white}: ${nextResponse()}\n\n`;
       }
     
       stdout = renderStdOut(stdout);

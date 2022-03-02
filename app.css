@@ -139,6 +139,8 @@ position: relative;
     font-family: 'Ms sans serif 8pt', sans-serif;
     font-size: 12px;
     transform-origin: left top;
+    position: relative;
+    z-index: 10;
 }
 
 .ui-window.ui_window_paint .text-overlay {

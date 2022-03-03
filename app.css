@@ -149,6 +149,7 @@ position: relative;
     left: 0;
     margin: 6px;
     pointer-events: none;
+    z-index: 11;
 }
 
 .ui-window.ui_window_paint .text-overlay .text-block {

@@ -30,7 +30,7 @@ export class WindowManager {
     }
 
     zIndexing(w) {
-        w?.addEventListener('mousedown', e => {
+        w?.addEventListener('pointerdown', e => {
             w.style.zIndex = WindowManager.zIndex++
         })
     }
@@ -46,7 +46,8 @@ export class WindowManager {
     makeDraggable(w) {
         let head = w?.querySelector('.head-ui-window')
 
-        head?.addEventListener('mousedown', e => {
+        head?.addEventListener('pointerdown', e => {
+            console.log(e)
             if (!w.state.maximized) {
                 const rect = w.getBoundingClientRect()
                 w.state.is_dragging = true
@@ -55,9 +56,9 @@ export class WindowManager {
             }
         })
 
-        document.addEventListener('mouseleave', e => { w.state.is_dragging = false })
-        document.addEventListener('mouseup', e => { w.state.is_dragging = false })
-        document.addEventListener('mousemove', e => {
+        document.addEventListener('pointerleave', e => { w.state.is_dragging = false })
+        document.addEventListener('pointerup', e => { w.state.is_dragging = false })
+        document.addEventListener('pointermove', e => {
             if (w.state.is_dragging === true) {
                 w.style.left = `${this.clampX(e.pageX - w.state.x_diff, w)}px`
                 w.style.top = `${this.clampY(e.pageY - w.state.y_diff, w)}px`
@@ -73,17 +74,17 @@ export class WindowManager {
         const buttons = [minimize, maximize, close]
         buttons.forEach(b => {
             if (b) {
-                b.addEventListener('mousedown', e => {
+                b.addEventListener('pointerdown', e => {
                     e.stopPropagation()
                     b.classList.add('button-pushed')
                 })
                 b.addEventListener('dblclick', e => {
                     e.stopPropagation()
                 })
-                document.addEventListener('mouseup', e => {
+                document.addEventListener('pointerup', e => {
                     b.classList.remove('button-pushed')
                 })
-                b.addEventListener('mouseleave', e => {
+                b.addEventListener('pointerleave', e => {
                     b.classList.remove('button-pushed')
                 })
             }
@@ -132,7 +133,7 @@ export class WindowManager {
         if (w.appName) w.minimizeApp = document.querySelector(`.active-app[data-app-name="${w.appName}"]`)
 
         if (w.minimizeApp && !img?.classList.contains('button-disabled')) {
-            const duration = 300
+            const duration = 200
 
             w.minimizeWindow = document.createElement('div')
             w.minimizeWindow.classList.add('minimize-window')

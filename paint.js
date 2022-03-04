@@ -67,9 +67,9 @@ export class Paint {
         Object.values(this.buttons).forEach(btn => {
             btn.setAttribute('draggable', 'false')
             btn.style.userSelect = 'none'
-            btn.addEventListener('mousedown', e => { btn.classList.add('button-pushed') })
-            btn.addEventListener('mouseleave', e => { btn.classList.remove('button-pushed') })
-            document.addEventListener('mouseup', e => { btn.classList.remove('button-pushed') })
+            btn.addEventListener('pointerdown', e => { btn.classList.add('button-pushed') })
+            btn.addEventListener('pointerleave', e => { btn.classList.remove('button-pushed') })
+            document.addEventListener('pointerup', e => { btn.classList.remove('button-pushed') })
         })
 
         this.buttons.Pencil?.addEventListener('click', e => {
@@ -413,7 +413,7 @@ export class Paint {
                 this.ctx.putImageData(imageData, 0, 0);
             }
         })
-        this.canvas.addEventListener('mousedown', (e) => {
+        this.canvas.addEventListener('pointerdown', (e) => {
             if (this.currentTool === 'pencil' || this.currentTool === 'eraser') {
                 this.draw_start = true
                 this.ctx.beginPath()
@@ -425,11 +425,11 @@ export class Paint {
                 this.ctx.strokeStyle = this.config.eraserUseColor === true ? this.colorSecond : '#FFFFFF'
             }
         })
-        document.addEventListener('mouseup', e => {
+        document.addEventListener('pointerup', e => {
             this.draw_start = false
         })
 
-        this.canvas.addEventListener('mousemove', (e) => {
+        this.canvas.addEventListener('pointermove', (e) => {
             const bounds = this.canvas.getBoundingClientRect();
             this.prev_x = this.cur_x
             this.prev_y = this.cur_y

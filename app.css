@@ -173,3 +173,7 @@ position: relative;
     transition: all 0.3s ease-in-out;
     opacity: 0;
 }
+/* Pointer events fix */
+body {
+    touch-action: none;
+}
